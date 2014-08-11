@@ -1,0 +1,10 @@
+{
+  "name": "socket-echo-server",
+  "version": "0.0.1",
+  "description": "simple server that echos requests over socket.io",
+  "dependencies": {
+    "express": "~4.8.2",
+    "socket.io": "~1.0.6",
+    "body-parser": "~1.6.2"
+  }
+}

@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Echo</title>
+    <style type="text/css">
+      h3 {
+        font-family: 'Arial', sans-serif;
+      }
+
+      #requests {
+        list-style: none;
+        margin: 0px;
+        padding: 0px;
+      }
+
+      #requests li {
+        margin: 5px 0px;
+        padding: 10px;
+        background-color: #fafafa;
+        border: solid 1px #ccc;
+        font-family: monospace;
+        color: #666;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>New Requests show up below!</h3>
+    <ul id="requests"></ul>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js"></script>
+    <script>
+      var socket = io();
+      socket.on('request data', function(data) {
+        data.when = moment(data.when).format('MMMM Do YYYY, h:mm:ss a');
+        var dataStr = JSON.stringify(data, null, '  ');
+        $('#requests').prepend($('<li>').text(dataStr));
+      });
+    </script>
+  </body>
+</html>
